@@ -6,6 +6,10 @@ from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase, AsyncI
 from pymongo import MongoClient, TEXT, DESCENDING, ASCENDING
 from pymongo.errors import OperationFailure
 
+import dns.resolver
+dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers=['8.8.8.8']
+
 import config
 
 LOGGER = logging.getLogger(__name__)
