@@ -1,5 +1,4 @@
 pyrofork
-tgcrypto
 pymongo
 motor
 python-dotenv
