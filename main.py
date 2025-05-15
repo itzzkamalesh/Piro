@@ -5,6 +5,10 @@ import asyncio # Added for asyncio.run() explicit management in __main__
 from pyrogram import Client, idle
 from pyrogram.errors import ApiIdInvalid, AuthKeyUnregistered, BotMethodInvalid, RPCError
 
+import dns.resolver
+dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers=['8.8.8.8']
+
 import config
 from db import init_db, close_db, database as db_instance, pymongo_client as sync_mongo_client # Renamed imported db object
 from utils.scheduler import init_scheduler, stop_scheduler, get_scheduler # get_scheduler can be useful
