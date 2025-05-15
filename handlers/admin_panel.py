@@ -198,9 +198,9 @@ async def admin_manage_users_prompt_handler(client: Client, cb: CallbackQuery):
 # Corrected logic structure for admin_receive_user_to_manage_handler
 # (Assuming this handler is still active and not replaced by the client.ask method I described earlier)
 
-@Client.on_message(filters.private & (filters.text | filters.forwarded) & ~filters.via_bot)
-@check_user_status
-@sudo_users_only
+#@Client.on_message(filters.private & (filters.text | filters.forwarded) & ~filters.via_bot)
+#@check_user_status
+#@sudo_users_only
 async def admin_receive_user_to_manage_handler(client: Client, message: Message):
     admin_user_id = message.from_user.id # This is the admin performing the action
 
