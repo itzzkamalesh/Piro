@@ -176,7 +176,7 @@ async def main_menu_navigation_handler(client: Client, cb: CallbackQuery):
 
     if action_prefix == MAIN_MENU_CALLBACK:
         action = action_full.split(":")[1] if len(action_full.split(":")) > 1 else ""
-        if action == "share":
+        if action == "start":
             clear_user_state(user_id)
             await send_main_menu(client, user_id, cb, edit=True)
         elif action == "premium":
