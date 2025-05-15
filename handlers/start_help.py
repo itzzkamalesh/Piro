@@ -214,12 +214,12 @@ async def main_menu_navigation_handler(client: Client, cb: CallbackQuery):
                     except:
                         pass
                 await cb.answer("Premium info loaded.")
-        elif action_full.startswith(SETTINGS_CALLBACK): # Matches "main:settings"
+        elif action == "settings": # Matches "main:settings"
             LOGGER.info(f"Settings callback received from {user_id}. Deferring to settings_handler.")
             from handlers.settings import settings_entry_handler # Avoid direct import cycle
             await settings_entry_handler(client, cb)
             await cb.answer("Loading Settings...") # Acknowledge and let dedicated handler take over
-        elif action_full.startswith(HELP_CALLBACK): # Matches "main:help"
+        elif action = "help": # Matches "main:help"
             clear_user_state(user_id)
             keyboard = create_help_keyboard()
             help_text = HELP_MESSAGE.format(bot_username=client.me.username)
