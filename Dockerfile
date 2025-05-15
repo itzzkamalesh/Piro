@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 
 # Install system dependencies and build tools
-RUN apt update && \
-    apt upgrade -y && \
+RUN apt update \
+    apt upgrade -y \
     apt install -y python3 \
     apt install -y python3-pip
 
