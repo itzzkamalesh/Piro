@@ -1,9 +1,6 @@
 FROM ubuntu:latest
 
-# Set Python version
-ENV PYTHON_VERSION=3.12.4
-
-# Install dependencies and build tools
+# Install system dependencies and build tools
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -20,28 +17,28 @@ RUN apt-get update && \
         curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Download, compile, and install Python
-RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
-    tar -xzf Python-${PYTHON_VERSION}.tgz && \
-    cd Python-${PYTHON_VERSION} && \
+# Download, compile, and install Python 3.12.4
+RUN wget https://www.python.org/ftp/python/3.12.4/Python-3.12.4.tgz && \
+    tar -xzf Python-3.12.4.tgz && \
+    cd Python-3.12.4 && \
     ./configure --enable-optimizations && \
     make -j$(nproc) && \
     make altinstall && \
     cd / && \
-    rm -rf Python-${PYTHON_VERSION}* 
+    rm -rf Python-3.12.4* 
 
-# Set working directory
+# Set application working directory
 WORKDIR /app
 
-# Copy application source
+# Copy application source code
 COPY . /app
 
-# Install Python requirements
+# Install Python dependencies
 RUN python3.12 -m pip install --upgrade pip && \
     python3.12 -m pip install -r requirements.txt
 
-# Expose any ports (if needed)
+# Expose application port (adjust if needed)
 EXPOSE 8000
 
-# Start the processes
+# Run Gunicorn and Python scripts concurrently
 CMD ["bash", "-c", "gunicorn app:app & python3.12 main.py & python3.12 ping.py"]
