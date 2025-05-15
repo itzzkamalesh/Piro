@@ -235,6 +235,11 @@ async def main_menu_navigation_handler(client: Client, cb: CallbackQuery):
                     except:
                         pass # Try to delete old button message
                 await cb.answer("Help section loaded.")
+        elif action == "my_secrets":
+            LOGGER.info(f"My Secrets callback received from {user_id}. Deferring to my_secrets_handler.")
+            from handlers.my_secrets import my_secrets_entry_handler
+            await my_secrets_entry_handler(client, cb)
+            await cb.answer("Loading Secret Lists...")
         else: # Unknown main menu action
              await cb.answer("Action not implemented yet.", show_alert=True)
 
