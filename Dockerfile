@@ -13,7 +13,7 @@ COPY . /app
 
 # Install Python dependencies
 RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install -r requirements.txt
+    python3 -m pip install -r requirements.txt --break-system-packages
 
 # Expose application port (adjust if needed)
 EXPOSE 8000
