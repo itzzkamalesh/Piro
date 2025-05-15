@@ -1,9 +1,12 @@
-FROM ubuntu:latest
+# Use official Python 3.12.4 image
+FROM python:3.12.4-slim
 
-# Install system dependencies and build tools
+# Install system dependencies
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y python3 python3-pip curl
+    apt install -y curl && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Set application working directory
 WORKDIR /app
@@ -12,7 +15,7 @@ WORKDIR /app
 COPY . /app
 
 # Install Python dependencies
-RUN python3 -m pip install -r requirements.txt --break-system-packages
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose application port (adjust if needed)
 EXPOSE 8000
