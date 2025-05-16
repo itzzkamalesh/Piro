@@ -35,7 +35,7 @@ async def secret_text_inline_handler(client: Client, inline_query: InlineQuery):
     # The bot sends the message to itself ("me") to get a persistent message_id.
     # This message can then be copied/forwarded when the recipient views the secret.
     try:
-        temp_bot_message = await client.send_message("me", text=query_text)
+        temp_bot_message = await client.send_message(user_id, text=query_text)
     except Exception as e:
         LOGGER.error(f"Failed to send temporary message to self for inline query from {user_id}: {e}")
         try:
@@ -43,9 +43,9 @@ async def secret_text_inline_handler(client: Client, inline_query: InlineQuery):
                 results=[
                     InlineQueryResultArticle(
                         id=str(uuid.uuid4()), # Needs a unique ID
-                        title="⚠️ Error Creating Secret",
-                        description="Could not prepare your secret. Please try again.",
-                        input_message_content=InputTextMessageContent("An error occurred while creating the inline secret.")
+                        title="⚠️ Bot not Started by You. Please Start Bot First.",
+                        description=f"Please try again or Start our Bot First. https://t.me/{config.BOT_USERNAME}?start",
+                        input_message_content=InputTextMessageContent(f"Please start our Bot First then Try. Start Here: https://t.me/{config.BOT_USERNAME}?start")
                     )
                 ],
                 cache_time=5 # Short cache for errors
@@ -93,8 +93,8 @@ async def secret_text_inline_handler(client: Client, inline_query: InlineQuery):
         return
 
     # --- Construct Inline Query Result ---
-    bot_username = client.me.username
-    view_secret_url = f"https://t.me/{bot_username}?start=viewsecret_{access_token}"
+    #bot_username = client.me.username
+    view_secret_url = f"https://t.me/{config.BOT_USERNAME}?start=viewsecret_{access_token}"
 
     # The message that will be sent when the user picks this inline result
     input_content_message_text = (
@@ -114,7 +114,7 @@ async def secret_text_inline_handler(client: Client, inline_query: InlineQuery):
         reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton(text="👁️ View Secret (1-Time)", url=view_secret_url)
         ]]),
-        thumb_url="https://img.icons8.com/ios-filled/50/000000/secret.png" # Example thumbnail
+        thumb_url="https://i.ibb.co/fhySkrD/file-00000000938862309b22c17d0d79588e.png" # Example thumbnail
     )
 
     try:
