@@ -1,6 +1,6 @@
 # 🤫 SecretShare-Bot
 
-**SecretShare-Bot** is a privacy-first Telegram bot built using [PyroFork](https://github.com/pyrogram/pyrofork). It allows users to share secrets and covert messages through Telegram—safely and anonymously. The bot supports premium user management, inline query sharing, MongoDB integration, and reaction-based control.
+**SecretShare-Bot** is a privacy-first Telegram bot built using [PyroFork](https://github.com/Mayuri-Chan/pyrofor]k). It allows users to share secrets and covert messages through Telegram—safely and anonymously. The bot supports premium user management, inline query sharing, MongoDB integration, and reaction-based control.
 
 ---
 
