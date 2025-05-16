@@ -214,6 +214,11 @@ async def main_menu_navigation_handler(client: Client, cb: CallbackQuery):
                     except:
                         pass
                 await cb.answer("Premium info loaded.")
+        elif action == "share":
+            LOGGER.info(f"Settings callback received from {user_id}. Deferring to share_handler.")
+            from handlers.share_flow import initiate_share_handler
+            await initiate_share_handler(client, cb)
+            await cb.answer("Loading Share Options...") # Acknowledge and let dedicated handler take over
         elif action == "settings": # Matches "main:settings"
             LOGGER.info(f"Settings callback received from {user_id}. Deferring to settings_handler.")
             from handlers.settings import settings_entry_handler # Avoid direct import cycle
