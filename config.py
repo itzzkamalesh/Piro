@@ -3,14 +3,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_ID = int(os.getenv("API_ID", "0"))
-API_HASH = os.getenv("API_HASH", "")
+API_ID = int(os.getenv("API_ID", "25599491"))
+API_HASH = os.getenv("API_HASH", "c8e3c0561cf148a6504f27b111fc3698")
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/secret_share_bot_default_db")
+MONGO_URI = os.getenv("MONGO_URI", "")
 
-OWNER_ID = int(os.getenv("OWNER_ID", "0"))
+OWNER_ID = int(os.getenv("OWNER_ID", "5983189506"))
 
 FREE_TIER_MAX_FILE_SIZE_MB = int(os.getenv("FREE_TIER_MAX_FILE_SIZE_MB", 1024))
 FREE_TIER_DEFAULT_EXPIRY_HOURS = int(os.getenv("FREE_TIER_DEFAULT_EXPIRY_HOURS", 87600))
@@ -20,7 +20,7 @@ PREMIUM_TIER_MAX_FILE_SIZE_MB = int(os.getenv("PREMIUM_TIER_MAX_FILE_SIZE_MB", 2
 PREMIUM_TIER_MAX_EXPIRY_DAYS = int(os.getenv("PREMIUM_TIER_MAX_EXPIRY_DAYS", 10000000000000))
 PREMIUM_SELF_DESTRUCT_OPTIONS = [1, 5, 10, 30, 60, 120, 360, 720, 1440, 2880] # Mins: 1m, 5m, 10m, 30m, 1h, 2h, 6h, 12h, 1d, 2d
 
-BOT_USERNAME = os.getenv("BOT_USERNAME", "YourSecretShareBot") # Will be updated by app.get_me() in main.py
+BOT_USERNAME = os.getenv("BOT_USERNAME", "mvfilestoreBot") # Will be updated by app.get_me() in main.py
 MAX_MESSAGE_LENGTH_FOR_SECRET = int(os.getenv("MAX_MESSAGE_LENGTH_FOR_SECRET", 4000))
 TEMP_DOWNLOAD_DIR = os.path.join(os.getcwd(), "temp_downloads")
 os.makedirs(TEMP_DOWNLOAD_DIR, exist_ok=True)
